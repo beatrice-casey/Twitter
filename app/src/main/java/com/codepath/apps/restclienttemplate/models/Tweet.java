@@ -1,12 +1,17 @@
 package com.codepath.apps.restclienttemplate.models;
 
+import android.text.format.DateUtils;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.parceler.Parcel;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 @Parcel
 public class Tweet {
@@ -14,6 +19,7 @@ public class Tweet {
     public String body;
     public String createdAt;
     public User user;
+    public String timestamp;
 
     //empty constructor needed by the parceler library
     public Tweet(){}
@@ -23,6 +29,7 @@ public class Tweet {
         tweet.body = jsonObject.getString("text");
         tweet.createdAt = jsonObject.getString("created_at");
         tweet.user = User.fromJson(jsonObject.getJSONObject("user"));
+        tweet.timestamp = jsonObject.getString("created_at");
         return tweet;
 
     }
