@@ -52,6 +52,24 @@ public class TweetsAdapter extends RecyclerView.Adapter<TweetsAdapter.ViewHolder
     }
 
 
+    /* when the user swipes down to refresh, an api call is immediately fired to get new data,
+        when the new data comes back, we clear the data in the adapter/rv and then add all the
+        new data we just got from the API back to the adapter.
+     */
+    // Clean all elements of the recycler view after making the API call to get new tweets
+    public void clear() {
+        //modifying the existing reference
+        tweets.clear();
+        notifyDataSetChanged();
+    }
+
+    // add all the new tweets to the recycler view
+    public void addAll(List<Tweet> tweetList) {
+        tweets.addAll(tweetList);
+        notifyDataSetChanged();
+    }
+
+
 
     //Define a view holder
 

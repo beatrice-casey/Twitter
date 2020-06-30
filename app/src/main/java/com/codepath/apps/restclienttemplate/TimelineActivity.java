@@ -3,6 +3,7 @@ package com.codepath.apps.restclienttemplate;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;
@@ -27,6 +28,7 @@ public class TimelineActivity extends AppCompatActivity {
     RecyclerView rvTweets;
     List<Tweet> tweets;
     TweetsAdapter adapter;
+    SwipeRefreshLayout swipeContainer;
 
    //@SuppressLint("WrongViewCast")
     @Override
@@ -36,6 +38,22 @@ public class TimelineActivity extends AppCompatActivity {
 
         //returns a client, which is an instance of TwitterClient.
         client = TwitterApp.getRestClient(this);
+
+        swipeContainer = findViewById(R.id.swipeContainer);
+        // Configure the refreshing colors so it is not a block color.
+        swipeContainer.setColorSchemeResources(android.R.color.holo_blue_bright,
+                android.R.color.holo_green_light,
+                android.R.color.holo_orange_light,
+                android.R.color.holo_red_light);
+        //hook up the refresh layout to be notified of when the user does the 'refresh' motion.
+        //set up a listener.
+        swipeContainer.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                Log.i(TAG, "fetching new data");
+                populateTimeline();
+            }
+        });
 
         //Find the recycler view
         rvTweets = findViewById(R.id.rvTweets);
@@ -56,10 +74,12 @@ public class TimelineActivity extends AppCompatActivity {
                 //using the data from the api to create a list of tweets
                 JSONArray jsonArray = json.jsonArray;
                 try {
-                    //modify existing tweets list
-                    tweets.addAll(Tweet.fromJsonArray(jsonArray));
-                    //notify adapter that data has changed
-                    adapter.notifyDataSetChanged();
+                    //first clearing view
+                    adapter.clear();
+                    //adding tweets by using the helper function in the adapter.
+                    adapter.addAll(Tweet.fromJsonArray(jsonArray));
+                    //signal that the refresh has finished. No longer need to show the refreshing indicator.
+                    swipeContainer.setRefreshing(false);
                 } catch (JSONException e) {
                     Log.e(TAG, "Json exception", e);
                 }
