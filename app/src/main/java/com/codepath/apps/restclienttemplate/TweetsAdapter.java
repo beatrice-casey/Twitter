@@ -1,6 +1,7 @@
 package com.codepath.apps.restclienttemplate;
 
 import android.content.Context;
+import android.content.Intent;
 import android.text.format.DateUtils;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,6 +14,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.codepath.apps.restclienttemplate.models.Tweet;
+
+import org.parceler.Parcels;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -77,7 +80,7 @@ public class TweetsAdapter extends RecyclerView.Adapter<TweetsAdapter.ViewHolder
 
     //Define a view holder
 
-    public class ViewHolder extends RecyclerView.ViewHolder {
+    public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         ImageView ivProfileImage;
         TextView tvBody;
@@ -93,34 +96,36 @@ public class TweetsAdapter extends RecyclerView.Adapter<TweetsAdapter.ViewHolder
             tvScreenName = itemView.findViewById(R.id.tvScreenName);
             tvTimestamp = itemView.findViewById(R.id.tvTimestamp);
             ivEmbeddedMedia = itemView.findViewById(R.id.ivEmbeddedMedia);
+            itemView.setOnClickListener(this);
         }
 
         public void bind(Tweet tweet) {
             tvBody.setText(tweet.body);
             tvScreenName.setText(tweet.user.screenName);
             Glide.with(context).load(tweet.user.profileImageURL).into(ivProfileImage);
-            tvTimestamp.setText(getRelativeTimeAgo(tweet.timestamp));
+            tvTimestamp.setText(tweet.timestamp);
             Glide.with(context).load(tweet.embeddedMedia).into(ivEmbeddedMedia);
         }
-    }
 
-    // getRelativeTimeAgo("Mon Apr 01 21:16:23 +0000 2014");
-    public String getRelativeTimeAgo(String rawJsonDate) {
-        String twitterFormat = "EEE MMM dd HH:mm:ss ZZZZZ yyyy";
-        SimpleDateFormat sf = new SimpleDateFormat(twitterFormat, Locale.ENGLISH);
-        sf.setLenient(true);
-
-        String relativeDate = "";
-        try {
-            long dateMillis = sf.parse(rawJsonDate).getTime();
-            relativeDate = DateUtils.getRelativeTimeSpanString(dateMillis,
-                    System.currentTimeMillis(), DateUtils.SECOND_IN_MILLIS).toString();
-        } catch (ParseException e) {
-            e.printStackTrace();
+        @Override
+        public void onClick(View view) {
+            //getting adapter position
+            int position = getAdapterPosition();
+            //make sure position is valid (it exists in view)
+            if (position != RecyclerView.NO_POSITION) {
+                //get the movie at that position
+                Tweet tweet = tweets.get(position);
+                //make an intent to display MovieDetailsActivity
+                Intent intent = new Intent(context, TweetDetailsActivity.class);
+                //serialize the movie using parceler, use short name as key
+                intent.putExtra("tweet", Parcels.wrap(tweet));
+                //show the activity
+                context.startActivity(intent);
+            }
         }
-
-        return relativeDate;
     }
+
+
 
 
 }
