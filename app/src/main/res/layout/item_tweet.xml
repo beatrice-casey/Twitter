@@ -28,11 +28,13 @@
 
     <TextView
         android:id="@+id/tvBody"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="218dp"
+        android:layout_height="18dp"
         android:layout_below="@+id/tvScreenName"
         android:layout_marginStart="5dp"
         android:layout_marginTop="0dp"
+        android:layout_marginEnd="74dp"
+        android:layout_toStartOf="@+id/ivEmbeddedMedia"
         android:layout_toEndOf="@+id/ivProfileImage"
         tools:text="This is my tweet!!" />
 
@@ -47,6 +49,19 @@
         android:layout_marginEnd="297dp"
         android:layout_toEndOf="@+id/ivProfileImage"
         android:textSize="8sp"
-        tools:text="8m" />
+        tools:text="8m ago" />
+
+    <ImageView
+        android:id="@+id/ivEmbeddedMedia"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_centerVertical="true"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="5dp"
+        android:layout_marginBottom="5dp"
+        tools:srcCompat="@tools:sample/avatars" />
 
 </RelativeLayout>

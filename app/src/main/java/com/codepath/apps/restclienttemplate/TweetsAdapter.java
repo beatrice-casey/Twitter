@@ -83,6 +83,7 @@ public class TweetsAdapter extends RecyclerView.Adapter<TweetsAdapter.ViewHolder
         TextView tvBody;
         TextView tvScreenName;
         TextView tvTimestamp;
+        ImageView ivEmbeddedMedia;
 
         //represents one row in the recycler view (tweet)
         public ViewHolder(@NonNull View itemView) {
@@ -91,6 +92,7 @@ public class TweetsAdapter extends RecyclerView.Adapter<TweetsAdapter.ViewHolder
             tvBody = itemView.findViewById(R.id.tvBody);
             tvScreenName = itemView.findViewById(R.id.tvScreenName);
             tvTimestamp = itemView.findViewById(R.id.tvTimestamp);
+            ivEmbeddedMedia = itemView.findViewById(R.id.ivEmbeddedMedia);
         }
 
         public void bind(Tweet tweet) {
@@ -98,6 +100,7 @@ public class TweetsAdapter extends RecyclerView.Adapter<TweetsAdapter.ViewHolder
             tvScreenName.setText(tweet.user.screenName);
             Glide.with(context).load(tweet.user.profileImageURL).into(ivProfileImage);
             tvTimestamp.setText(getRelativeTimeAgo(tweet.timestamp));
+            Glide.with(context).load(tweet.embeddedMedia).into(ivEmbeddedMedia);
         }
     }
 
