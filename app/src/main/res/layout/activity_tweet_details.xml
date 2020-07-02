@@ -14,6 +14,7 @@
         android:layout_marginTop="5dp"
         android:layout_marginEnd="5dp"
         android:layout_marginBottom="5dp"
+        android:adjustViewBounds="true"
         app:layout_constraintStart_toStartOf="parent"
         tools:layout_editor_absoluteY="2dp"
         tools:srcCompat="@tools:sample/avatars" />
@@ -24,8 +25,8 @@
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_marginStart="5dp"
-        android:layout_marginTop="5dp"
-        android:layout_toEndOf="@+id/ivProfileImage"
+        android:layout_marginTop="4dp"
+        android:layout_toEndOf="@+id/tvName"
         tools:text="beacasey622" />
 
     <TextView
@@ -62,9 +63,21 @@
         android:layout_height="142dp"
         android:layout_below="@+id/tvTimestamp"
         android:layout_alignParentEnd="true"
-        android:layout_marginStart="75dp"
+        android:layout_marginStart="5dp"
         android:layout_marginTop="20dp"
-        android:layout_marginEnd="109dp"
+        android:layout_marginEnd="5dp"
+        android:adjustViewBounds="true"
         android:layout_toEndOf="@+id/ivProfileImage"
         tools:srcCompat="@tools:sample/avatars" />
+
+    <TextView
+        android:id="@+id/tvName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="4dp"
+        android:layout_toEndOf="@+id/ivProfileImage"
+        android:textStyle="bold"
+        tools:text="Beatrice Casey" />
 </RelativeLayout>

@@ -22,8 +22,8 @@
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_marginStart="5dp"
-        android:layout_marginTop="0dp"
-        android:layout_toEndOf="@+id/ivProfileImage"
+        android:layout_marginTop="1dp"
+        android:layout_toEndOf="@+id/tvName"
         tools:text="beacasey622" />
 
     <TextView
@@ -33,36 +33,47 @@
         android:layout_below="@+id/tvScreenName"
         android:layout_marginStart="5dp"
         android:layout_marginTop="0dp"
-        android:layout_marginEnd="74dp"
-        android:layout_toStartOf="@+id/ivEmbeddedMedia"
         android:layout_toEndOf="@+id/ivProfileImage"
-        tools:text="This is my tweet!!"
-        android:autoLink="all"/>
+        android:autoLink="all"
+        tools:text="This is my tweet!!" />
 
     <TextView
         android:id="@+id/tvTimestamp"
-        android:layout_width="50dp"
-        android:layout_height="9dp"
+        android:layout_width="60dp"
+        android:layout_height="14dp"
         android:layout_below="@+id/tvBody"
+        android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
-        android:layout_marginStart="5dp"
-        android:layout_marginTop="0dp"
-        android:layout_marginEnd="297dp"
+        android:layout_marginStart="287dp"
+        android:layout_marginTop="3dp"
+        android:layout_marginEnd="5dp"
         android:layout_toEndOf="@+id/ivProfileImage"
-        android:textSize="8sp"
+        android:textAlignment="viewEnd"
+        android:textSize="10sp"
         tools:text="8m ago" />
 
     <ImageView
         android:id="@+id/ivEmbeddedMedia"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:layout_alignParentTop="true"
+        android:layout_width="338dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tvBody"
         android:layout_alignParentEnd="true"
-        android:layout_centerVertical="true"
-        android:layout_marginStart="5dp"
+        android:layout_marginStart="3dp"
         android:layout_marginTop="5dp"
-        android:layout_marginEnd="5dp"
+        android:layout_marginEnd="11dp"
         android:layout_marginBottom="5dp"
+        android:adjustViewBounds="true"
+        android:layout_toEndOf="@+id/ivProfileImage"
         tools:srcCompat="@tools:sample/avatars" />
+
+    <TextView
+        android:id="@+id/tvName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="5dp"
+        android:layout_toEndOf="@+id/ivProfileImage"
+        android:textStyle="bold"
+        tools:text="Beatrice Casey" />
 
 </RelativeLayout>

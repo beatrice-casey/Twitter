@@ -2,7 +2,6 @@ package com.codepath.apps.restclienttemplate;
 
 import android.content.Context;
 import android.content.Intent;
-import android.text.format.DateUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,14 +12,14 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.target.Target;
 import com.codepath.apps.restclienttemplate.models.Tweet;
 
 import org.parceler.Parcels;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.List;
-import java.util.Locale;
+
+import jp.wasabeef.glide.transformations.RoundedCornersTransformation;
 
 public class TweetsAdapter extends RecyclerView.Adapter<TweetsAdapter.ViewHolder>{
 
@@ -84,27 +83,34 @@ public class TweetsAdapter extends RecyclerView.Adapter<TweetsAdapter.ViewHolder
 
         ImageView ivProfileImage;
         TextView tvBody;
-        TextView tvScreenName;
+        TextView tvUserName;
         TextView tvTimestamp;
         ImageView ivEmbeddedMedia;
+        TextView tvScreenName;
 
         //represents one row in the recycler view (tweet)
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             ivProfileImage = itemView.findViewById(R.id.ivProfileImage);
             tvBody = itemView.findViewById(R.id.tvBody);
-            tvScreenName = itemView.findViewById(R.id.tvScreenName);
+            tvUserName = itemView.findViewById(R.id.tvScreenName);
             tvTimestamp = itemView.findViewById(R.id.tvTimestamp);
             ivEmbeddedMedia = itemView.findViewById(R.id.ivEmbeddedMedia);
+            tvScreenName = itemView.findViewById(R.id.tvName);
             itemView.setOnClickListener(this);
         }
 
         public void bind(Tweet tweet) {
+            int radius = 15;
+            int margin = 10;
             tvBody.setText(tweet.body);
-            tvScreenName.setText(tweet.user.screenName);
-            Glide.with(context).load(tweet.user.profileImageURL).into(ivProfileImage);
+            tvUserName.setText("@" + tweet.user.screenName);
+            Glide.with(context).load(tweet.user.profileImageURL).transform(new RoundedCornersTransformation(radius, margin))
+                    .into(ivProfileImage);
+            tvScreenName.setText(tweet.user.name);
             tvTimestamp.setText(tweet.timestamp);
-            Glide.with(context).load(tweet.embeddedMedia).into(ivEmbeddedMedia);
+            Glide.with(context).load(tweet.embeddedMedia).transform(new RoundedCornersTransformation(radius, margin))
+                    .override(Target.SIZE_ORIGINAL).into(ivEmbeddedMedia);
         }
 
         @Override
