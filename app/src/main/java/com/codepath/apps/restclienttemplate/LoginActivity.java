@@ -11,6 +11,11 @@ import com.codepath.apps.restclienttemplate.models.SampleModel;
 import com.codepath.apps.restclienttemplate.models.SampleModelDao;
 import com.codepath.oauth.OAuthLoginActionBarActivity;
 
+/**
+ * This class allows the user to log into their account and see their tweets. If login is
+ * successful, then the user will be taken to their timeline.
+ */
+
 public class LoginActivity extends OAuthLoginActionBarActivity<TwitterClient> {
 
 	SampleModelDao sampleModelDao;

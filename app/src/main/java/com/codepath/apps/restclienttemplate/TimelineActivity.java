@@ -30,6 +30,12 @@ import java.util.Locale;
 
 import okhttp3.Headers;
 
+/**
+ * This class handles the timeline. It populates and refreshes the timeline, and also loads more
+ * tweets if the user scrolls down far enough. It sets up the recycler view, using a layout manager
+ * and the adapter.
+ */
+
 public class TimelineActivity extends AppCompatActivity {
 
     TwitterClient client;

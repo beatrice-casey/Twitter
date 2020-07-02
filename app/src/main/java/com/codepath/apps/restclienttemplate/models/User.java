@@ -4,6 +4,11 @@ import org.json.JSONException;
 import org.json.JSONObject;
 import org.parceler.Parcel;
 
+/**
+ * this class holds all the attributes that a user has, i.e profile picture, username and screenname.
+ * It takes a Json object and converts that data to a user object.
+ */
+
 @Parcel
 public class User {
 

@@ -14,6 +14,12 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
+/**
+ * this class creates a tweet object from a Json object, with all of the tweet attributes that are
+ * being used for this app. It also takes a JsonArray and converts that data to a list of tweet
+ * objects.
+ */
+
 @Parcel
 public class Tweet {
 

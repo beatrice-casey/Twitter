@@ -22,6 +22,10 @@ import java.util.ArrayList;
 import jp.wasabeef.glide.transformations.RoundedCornersTransformation;
 import okhttp3.Headers;
 
+/**
+ * This class shows a detailed view of a tweet
+ */
+
 public class TweetDetailsActivity extends AppCompatActivity {
 
     //the tweet to display

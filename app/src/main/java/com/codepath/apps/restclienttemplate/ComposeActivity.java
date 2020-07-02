@@ -23,6 +23,13 @@ import org.parceler.Parcels;
 
 import okhttp3.Headers;
 
+/**
+ * This class is the activity that allows the user to create a tweet. It implements a textChangedListener
+ * and an onClickListener. The textChangedListener allows the user to see how many characters they
+ * have left in a tweet before they run out of room and the onClickListener is used for when the
+ * user clicks the 'tweet' button. Once the user clicks the button, an API call is made to publish
+ * the tweet.
+ */
 
 public class ComposeActivity extends AppCompatActivity {
 
@@ -84,7 +91,7 @@ public class ComposeActivity extends AppCompatActivity {
                     Toast.makeText(ComposeActivity.this, "Sorry, your tweet is too long", Toast.LENGTH_SHORT).show();
                     return;
                 }
-                Toast.makeText(ComposeActivity.this, tweetContent, Toast.LENGTH_LONG).show();
+                //Toast.makeText(ComposeActivity.this, tweetContent, Toast.LENGTH_LONG).show();
                 //make an API call to twitter to publish the tweet
                 client.publishTweet(tweetContent, new JsonHttpResponseHandler() {
                     @Override

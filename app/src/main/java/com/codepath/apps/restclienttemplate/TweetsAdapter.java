@@ -21,6 +21,12 @@ import java.util.List;
 
 import jp.wasabeef.glide.transformations.RoundedCornersTransformation;
 
+/**
+ * This class is the adapter between the models and the activity. It creates a view holder and binds
+ * the data into view elements. It also implements an onClick listener- when a certain tweet is
+ * pressed, it grabs the data at that tweet and passes it to the TweetDetailsActivity, where it
+ * is bound to the view and shown.
+ */
 public class TweetsAdapter extends RecyclerView.Adapter<TweetsAdapter.ViewHolder>{
 
     //Pass in the context and list of tweets (through constructor)
