@@ -22,6 +22,7 @@ public class Tweet {
     public User user;
     public String timestamp;
     public String embeddedMedia;
+    public long id;
 
     //empty constructor needed by the parceler library
     public Tweet(){}
@@ -32,6 +33,7 @@ public class Tweet {
         tweet.createdAt = jsonObject.getString("created_at");
         tweet.user = User.fromJson(jsonObject.getJSONObject("user"));
         tweet.timestamp = getRelativeTimeAgo(jsonObject.getString("created_at"));
+        tweet.id = jsonObject.getLong("id");
 
         if (jsonObject.has("entities")) {
             JSONObject entitiesArray = jsonObject.getJSONObject("entities");
