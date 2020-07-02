@@ -36,7 +36,8 @@
         android:layout_marginEnd="74dp"
         android:layout_toStartOf="@+id/ivEmbeddedMedia"
         android:layout_toEndOf="@+id/ivProfileImage"
-        tools:text="This is my tweet!!" />
+        tools:text="This is my tweet!!"
+        android:autoLink="all"/>
 
     <TextView
         android:id="@+id/tvTimestamp"
