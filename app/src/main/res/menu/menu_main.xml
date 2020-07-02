@@ -5,8 +5,9 @@
     <item
         android:id="@+id/compose"
         android:icon="@mipmap/ic_launcher_round"
-        android:iconTint="@color/light_gray"
+        android:iconTint="@android:color/white"
         android:tint="@android:color/white"
         android:title="Compose"
         app:showAsAction="always" />
+
 </menu>
